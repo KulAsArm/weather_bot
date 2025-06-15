@@ -37,7 +37,7 @@ func LoadConfig(logger *slog.Logger) (*Config, error) {
 	windSpeedUnit := os.Getenv("WIND_SPEED_UNIT")
 
 	if token == "" || chatIDConfig == "" {
-		logger.Error("Необходимые переменные окружения отсутствуют", "BOT_TOKEN", token, "CHAT_ID", chatIDConfig)
+		logger.Error("Необходимые переменные окружения отсутствуют", "TOKEN", token, "CHAT_ID", chatIDConfig)
 		return nil, errors.New("необходимые переменные окружения отсутствуют")
 	}
 	if cronTime == "" {
@@ -50,12 +50,12 @@ func LoadConfig(logger *slog.Logger) (*Config, error) {
 	}
 	latitude, err := strconv.ParseFloat(latitudeConfig, 64)
 	if err != nil {
-		logger.Error("Ошибка преобразования MOSCOW_LATITUDE в float64", "error", err)
+		logger.Error("Ошибка преобразования MOSCOW_LATITUDE в float64", "error", err, "MOSCOW_LATITUDE", latitudeConfig)
 		return nil, err
 	}
 	longitude, err := strconv.ParseFloat(longitudeConfig, 64)
 	if err != nil {
-		logger.Error("Ошибка преобразования MOSCOW_LONGITUDE в float64", "error", err)
+		logger.Error("Ошибка преобразования MOSCOW_LONGITUDE в float64", "error", err, "MOSCOW_LONGITUDE", longitudeConfig)
 		return nil, err
 	}
 	forecastDays, err := strconv.ParseInt(forecastDaysConfig, 10, 64)
